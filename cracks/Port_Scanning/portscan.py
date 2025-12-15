@@ -6,7 +6,7 @@ class PortScanCrack(Crack):
   PORT_FROM = 0
   PORT_TO = 65535
 
-  def defend(self):
+  def identify(self):
     pass
   
   

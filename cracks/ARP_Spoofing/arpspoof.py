@@ -1,5 +1,5 @@
 from ..base import Crack
 
 class ARPSpoofCrack(Crack):
-  def defend(self):
+  def identify(self):
     pass

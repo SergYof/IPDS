@@ -1,5 +1,5 @@
 from ..base import Crack
 
 class MIDMCrack(Crack):
-  def defend(self):
+  def identify(self):
     pass
