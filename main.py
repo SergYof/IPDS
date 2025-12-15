@@ -1,5 +1,5 @@
 from .manager import Manager
-from .cracks.portscan.portscan import PortScanCrack
+from .cracks.Port_Scanning.portscan import PortScanCrack
 
 manager = Manager()
 
