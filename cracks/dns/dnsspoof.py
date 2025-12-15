@@ -1,5 +1,8 @@
 from ..crack import Crack
 
 class DNSSpoofCrack(Crack):
-  def run():
+  def attack():
+    pass
+
+  def defend():
     pass

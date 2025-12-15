@@ -1,5 +1,8 @@
 from ..crack import Crack
 
 class MIDMCrack(Crack):
-  def run():
+  def attack():
+    pass
+
+  def defend():
     pass
