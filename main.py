@@ -11,7 +11,8 @@ def main() -> None:
         intervalSeconds=1,
         cracks=[
             PortScanCrack(),
-            DNSSpoofCrack()
+            DNSSpoofCrack(),
+            ARPSpoofCrack()
         ]
     )
 
