@@ -1,5 +1,6 @@
 from cracks.crack import Crack
 
 class Manager:
-  def crack(crack: Crack):
-    crack.run()
+  def run(crack: Crack):
+    crack.attack()
+    crack.defend()
