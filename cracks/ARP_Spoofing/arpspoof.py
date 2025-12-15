@@ -1,4 +1,4 @@
-from scapy.all import sniff,
+from scapy.all import sniff
 from scapy.layers.l2 import ARP
 from ..base import Crack
 
