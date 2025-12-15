@@ -10,11 +10,13 @@ class DNSSpoofCrack(Crack):
     if packet.haslayer(scapy.DNS) and packet.getlayer(scapy.DNS).qr == 1:
       dns_layer = packet.getlayer(scapy.DNS)
       
+      #searching for the A record and decoding domain names
       for i in range(dns_layer.ancount):
         ans = dns_layer.an[i]
         if ans.type == 1:  # A record
           domain = ans.rrname.decode().rstrip('.')
           ip_address = ans.rdata
           
+          #checking decoded domain against trusted domains
           if domain not in self.trustedDomains and ip_address != self.trustedDomains[domain]:
             print("[!] DNS Spoofing detected for domain:", domain, "with IP:", ip_address)
