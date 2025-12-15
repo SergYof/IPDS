@@ -1,13 +1,13 @@
 from ..base import Crack
+<<<<<<< Updated upstream
 from scapy.all import sniff
 from scapy.layers.l2 import ARP
-
-class MIDMCrack(Crack):
-    arp_table = {}  #stores IP, MAC mapping
+=======
+from scapy.all import sniff, ARP
+>>>>>>> Stashed changes
 
 class MITMCrack(Crack):
-    def __init__(self):
-        self.arp_table = {}  #stores IP, MAC mapping
+    arp_table = {}  #stores IP, MAC mapping
 
     def identify(self):
         def detect(packet):
