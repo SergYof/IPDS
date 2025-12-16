@@ -1,7 +1,7 @@
-from cracks.ARP_Spoofing.arpspoof import ARPSpoofCrack
-# from cracks.MITM.mitm import MITMCrack
-from cracks.Port_Scanning.portscan import PortScanCrack
-from cracks.dns.dnsspoof import DNSSpoofCrack
+from cracks.arpspoof import ARPSpoofCrack
+from cracks.mitm import MITMCrack
+from cracks.portscan import PortScanCrack
+from cracks.dnsspoof import DNSSpoofCrack
 from manager import Manager
 
 manager = Manager()
@@ -12,7 +12,8 @@ def main() -> None:
         cracks=[
             PortScanCrack(),
             DNSSpoofCrack(),
-            ARPSpoofCrack()
+            ARPSpoofCrack(),
+            MITMCrack(),
         ]
     )
 

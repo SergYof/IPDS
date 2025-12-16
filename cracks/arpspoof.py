@@ -1,17 +1,18 @@
-from scapy.all import sniff
 from scapy.layers.l2 import ARP
-from ..base import Crack
+from .base import Crack
 
 class ARPSpoofCrack(Crack):
     def __init__(self):
-        
+        super().__init__("ARP Spoofing")
         self.ip_mac_table = {}
 
-    def _process_packet(self, packet):
-        if packet.haslayer(ARP):
+    def identify(self):        
+        for packet in self.packets:
+            if not packet.haslayer(ARP):
+                pass
+            
             arp = packet[ARP]
 
-            
             if arp.op == 2:  
                 ip = arp.psrc
                 mac = arp.hwsrc
@@ -22,7 +23,3 @@ class ARPSpoofCrack(Crack):
                         print(f"    IP {ip} changed from {self.ip_mac_table[ip]} to {mac}")
                 else:
                     self.ip_mac_table[ip] = mac
-
-    def identify(self):
-        print("[*] Starting ARP spoofing detection...")
-        sniff(filter="arp", store=False, prn=self._process_packet)
