@@ -75,7 +75,7 @@ Example output for a detected ARP spoof:
 *   **ARP Spoofing:** Adam Greisman
 *   **DNS Spoofing:** Ithamar Kaplan & Lior Brezner
 *   **MITM:** Yuval Pele Zalmanovich
-*   **Code & Software Design:** Sergey Yoffe & Lev Shapiro
+*   **Additions & Software Design:** Sergey Yoffe & Lev Shapiro
 
 ## License
 
