@@ -1,6 +1,7 @@
 from base import Crack
-from scapy.layers.dns import DNS, UDP
-import dns.resolver  # Import the DNS resolver library
+from scapy.layers.dns import DNS
+from scapy.layers.inet import UDP
+import dns.resolver  # Import the DNS resolver library (dnspython)
 
 
 class DNSSpoofCrack(Crack):
@@ -12,8 +13,10 @@ class DNSSpoofCrack(Crack):
         self.resolver = dns.resolver.Resolver()
         self.resolver.nameservers = ['8.8.8.8', '1.1.1.1']
 
-    def identify(self):
-        for packet in self.packets:
+    def identify(self, packetChunk):
+        
+        alerts: list[tuple[str, str, str]] = []
+        for packet in packetChunk:
             # Check for UDP port 53
             if not packet.haslayer(UDP) or packet[UDP].dport != 53:
                 continue
@@ -31,7 +34,16 @@ class DNSSpoofCrack(Crack):
                         captured_ip = ans.rdata
 
                         # Perform the dynamic check
-                        self.verify_dynamic(domain, captured_ip)
+                        valid, msg = self.verify_dynamic(domain, captured_ip)
+                        if valid:
+                            continue
+                        if msg.find("Error") == -1: # that's not an error
+                            alerts.append(("DNS", msg, "HIGH"))
+                        else:
+                            alerts.append(("DNS", msg, "LOW"))
+        
+        return alerts
+
 
     def verify_dynamic(self, domain, captured_ip):
         """
@@ -45,17 +57,15 @@ class DNSSpoofCrack(Crack):
 
             # Check if the captured IP exists in the list of trusted IPs
             if captured_ip not in trusted_ips:
-                print(f"[!] POTENTIAL SPOOF: {domain}")
-                print(f"    Packet IP: {captured_ip}")
-                print(f"    Trusted IPs: {trusted_ips}")
-            else:
-                # Optional: specific verbose logging for valid packets
-                # print(f"[+] Verified Valid: {domain} -> {captured_ip}")
-                pass
+                return False, f"[!] POTENTIAL SPOOF: {domain}\n\tPacket IP: {captured_ip}\n\tTrusted IPs: {", ".join(trusted_ips)}"
+            
+            return True, ""
 
         except dns.resolver.NXDOMAIN:
             print(f"[!] Domain does not exist (NXDOMAIN): {domain}")
-        except dns.exception.Timeout:
+        except dns.resolver.Timeout:
             print(f"[?] Timeout verifying {domain}")
         except Exception as e:
             print(f"[?] Error verifying {domain}: {e}")
+        
+        return False, f"Error validating {domain} - given {captured_ip}" # if there's an error validating
