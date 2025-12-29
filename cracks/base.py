@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from scapy.plist import PacketList
 
 
 class Crack(ABC):
@@ -7,6 +8,6 @@ class Crack(ABC):
 
 
   @abstractmethod
-  def identify(self): 
+  def identify(self, packetList: PacketList): 
     """Method to defend the crack script"""
     pass
