@@ -26,3 +26,4 @@ class Manager:
                 t.join()
             
             # the results must be outputted by the functions
+            # there must be calls to add_alert() function from GUI
