@@ -141,3 +141,4 @@ if __name__ == "__main__":
     gui.add_alert("MITM", "MITM correlation confirmed", "CRITICAL")
 
     gui.run()
+    gui.add_alert("MITM", "MITM correlation confirmed", "CRITICAL")
