@@ -3,12 +3,17 @@ from cracks.base import Crack
 from scapy.plist import PacketList
 from scapy.sendrecv import sniff
 from threading import Thread
+from IDS import IDPSGui
 
 ATTACK_CHECK_INTERVAL = 5   # how frequently the chunks are scanned  
 
 class Manager:
+    gui = IDPSGui() # GUI object
+    
     def runOnce(self, crack: Crack, packetChunk: PacketList):   # check one packet chunk for one crack type
-        crack.identify(packetChunk)  # TODO: take action if detected
+        alertList = crack.identify(packetChunk)  # get the list of all alerts
+        for alert in alertList:
+            self.gui.add_alert(*alert)  # every alert is a tuple of 3 strings
 
 
     def start(self, cracks: List[Crack]):
@@ -27,3 +32,4 @@ class Manager:
             
             # the results must be outputted by the functions
             # there must be calls to add_alert() function from GUI
+
