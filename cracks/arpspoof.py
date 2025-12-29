@@ -1,5 +1,5 @@
 from scapy.layers.l2 import ARP
-from .base import Crack
+from base import Crack
 
 class ARPSpoofCrack(Crack):
     def __init__(self):
