@@ -4,11 +4,12 @@ from scapy.plist import PacketList
 
 
 class MITMCrack(Crack):    
+    arp_table = {}
+    
     def __init__(self):
         super().__init__("MITM")
 
     def identify(self, packetChunk: PacketList):
-        arp_table = {}
 
         alerts: list[tuple[str, str, str]] = []
         for packet in packetChunk:
@@ -18,9 +19,9 @@ class MITMCrack(Crack):
             ip = packet[ARP].psrc
             mac = packet[ARP].hwsrc
 
-            if ip in arp_table and arp_table[ip] != mac:
-                alerts.append(("MITM", f"Suspicious ARP response - MAC mismatch! {ip} was {arp_table[ip]}, but in the response is {mac}", "HIGH"))
+            if ip in self.arp_table and self.arp_table[ip] != mac:
+                alerts.append(("MITM", f"Suspicious ARP response - MAC mismatch! {ip} was {self.arp_table[ip]}, but in the response is {mac}", "HIGH"))
             else:
-                arp_table[ip] = mac
+                self.arp_table[ip] = mac
         
         return alerts
