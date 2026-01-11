@@ -39,9 +39,8 @@ class Manager:
             "details": details
         })
 
-    def start(self, iface):
+    def start(self):
         sniff(
-            iface=iface,
             prn=self.process_packet,
             store=False,
             promisc=True
