@@ -1,8 +1,5 @@
-# IDPS — Live Intrusion Detection (Prototype)
-
-Lightweight, extensible network intrusion detection prototype with live GUI, multiple detector "cracks" (PortScan, ARP spoof, DNS spoof), flow tracking, and optional GeoIP enrichment.
-
-**Status:** Prototype — research/educational use only.
+# IDS — Intrusion Detection System
+Lightweight, extensible network intrusion monitoring with live GUI, multiple detector "cracks" (PortScan, ARP spoof, DNS spoof).
 
 **Key features**
 - Port-scan detection (`cracks/portscan.py`)
@@ -44,13 +41,6 @@ Notes
 - Packet processing and detection are in `manager.py` and detectors in `cracks/`.
 - The project uses Scapy for packet parsing. On Windows, install Npcap (https://nmap.org/npcap/) and run Python with administrator privileges to capture packets.
 
-Extending the IDS
-- Add a new detector by subclassing `cracks.base.Crack` and implementing `on_packet` and/or `on_flow`.
-- Register your new crack in `main.py`'s `cracks = [...]` list.
-
-Important security & legal note
-- Only run this software on networks and machines you own or are authorized to test. Monitoring or attacking networks without permission may be illegal.
-
 Project layout (important files)
 - [main.py](main.py) — launcher and configured interface
 - [manager.py](manager.py) — packet handling, detector orchestration, alert publishing
@@ -59,6 +49,3 @@ Project layout (important files)
 - [engine/flow_manager.py](engine/flow_manager.py), [engine/flow.py](engine/flow.py) — flow handling
 - [bus/packet_bus.py](bus/packet_bus.py), [bus/alert_bus.py](bus/alert_bus.py) — simple in-memory buses
 - [utils/geoip.py](utils/geoip.py) — optional GeoIP lookup
-
-Maintainers
-- Current maintainer: repository owner (see repository settings). For code-level questions, open an issue or a PR.
