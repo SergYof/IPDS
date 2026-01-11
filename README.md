@@ -48,9 +48,7 @@ Notes
 - [manager.py](manager.py)
 - [context.py](context.py)
 - [gui.py](gui.py)
-- .github/
-	- prompts/
-		- [create-readme.prompt.md](.github/prompts/create-readme.prompt.md)
+
 - bus/
 	- [alert_bus.py](bus/alert_bus.py)
 	- [packet_bus.py](bus/packet_bus.py)
