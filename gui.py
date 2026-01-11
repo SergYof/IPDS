@@ -140,6 +140,7 @@ class IDSApp(tk.Tk):
             pady=12
         )
         self.alerts_text.pack(fill=tk.BOTH, expand=True, padx=2, pady=(0, 2))
+        self.alerts_text.configure(state=tk.DISABLED)
 
         # Enhanced text tags with better styling
         self.alerts_text.tag_config("time", foreground=ACCENT, font=("Consolas", 9))
