@@ -13,10 +13,11 @@ def main():
         DNSSpoofCrack()
     ]
 
-    gui_thread = Thread(target=start_gui, daemon=True)
-    gui_thread.start()
+    manager = Manager(cracks)
+    manager_thread = Thread(target=manager.start, daemon=True)
+    manager_thread.start()
 
-    Manager(cracks).start()
+    start_gui()
 
 if __name__ == "__main__":
     main()

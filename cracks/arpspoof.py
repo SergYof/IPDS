@@ -9,9 +9,7 @@ class ARPSpoofCrack(Crack):
 
     def __init__(self):
         super().__init__("ARP Spoof")
-        from collections import deque
 
-        # In __init__:
         self.state = defaultdict(lambda: {
             "replies": deque(),
             "alerted": False
@@ -22,6 +20,9 @@ class ARPSpoofCrack(Crack):
             return []
 
         arp = pkt[ARP]
+        if arp.op != 2:  # Only check ARP replies (is-at)
+            return []
+
         now = time()
         attacker_mac = arp.hwsrc
         claimed_ip = arp.psrc
