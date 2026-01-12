@@ -168,7 +168,7 @@ class IDSApp(tk.Tk):
         tree_container = tk.Frame(right_frame, bg=CARD_BG)
         tree_container.pack(fill=tk.BOTH, expand=True, padx=2, pady=(0, 2))
 
-        columns = ("Time", "Src IP", "Src MAC", "Dst IP", "Dst MAC", "Protocol", "Location", "Info", "Status")
+        columns = ("Time", "Src IP", "Src MAC", "Dst IP", "Dst MAC", "Info", "Status")
         self.packet_tree = ttk.Treeview(
             tree_container,
             columns=columns,
@@ -188,14 +188,13 @@ class IDSApp(tk.Tk):
         tree_container.grid_rowconfigure(0, weight=1)
         tree_container.grid_columnconfigure(0, weight=1)
 
-        widths = [100, 140, 140, 140, 140, 90, 150, 400, 90]
+        widths = [100, 140, 140, 140, 140, 400, 90]
         for col, width in zip(columns, widths):
             self.packet_tree.heading(col, text=col)
             self.packet_tree.column(col, anchor="w", width=width)
 
         self.packet_tree.column("Time", anchor="center")
         self.packet_tree.column("Status", anchor="center")
-        self.packet_tree.column("Location", anchor="w")
 
         # Enhanced color tags - Green for normal, Red for suspicious
         self.packet_tree.tag_configure(
@@ -261,14 +260,9 @@ class IDSApp(tk.Tk):
                     src_ip = pkt.getlayer('IPv6').src
                     dst_ip = pkt.getlayer('IPv6').dst
 
-                proto = getattr(pkt, 'proto', getattr(pkt, 'highest_layer', ''))
-
-                # Get geographical location
-                location = getattr(pkt, 'geo', '')
-
                 info = pkt.summary() if callable(getattr(pkt, 'summary', None)) else str(pkt)
             except Exception:
-                timestamp = src_ip = src_mac = dst_ip = dst_mac = proto = location = info = ""
+                timestamp = src_ip = src_mac = dst_ip = dst_mac = info = ""
 
             # Status with emoji indicators
             status = "🚨 THREAT" if suspicious else "✓ SAFE"
@@ -276,7 +270,7 @@ class IDSApp(tk.Tk):
             self.packet_tree.insert(
                 "",
                 "end",
-                values=(timestamp, src_ip, src_mac, dst_ip, dst_mac, proto, location, info, status),
+                values=(timestamp, src_ip, src_mac, dst_ip, dst_mac, info, status),
                 tags=("suspicious" if suspicious else "normal",)
             )
 
