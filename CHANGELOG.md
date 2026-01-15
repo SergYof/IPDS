@@ -2,35 +2,35 @@
 
 ## 2026-01-15
 **Documentation & Scope**
-- Removed any mention of "prevention" — *Ithamar Kaplan*
-- we have no wiki — *Ithamar Kaplan*
-- Update README.md — *Lev-Shapiro*
+- Removed any mention of "prevention" — *Ithamar*
+- we have no wiki — *Ithamar*
+- Update README.md — *Lev*
 
 ## 2026-01-12
 **Maintenance & Cleanup**
 - Removed unneeded files; modified .gitignore — *Sergey*
-- Create manager.cpython-312.pyc — *pele1551*
-- submit — *shapilev*
+- Create manager.cpython-312.pyc — *Pele*
+- submit — *Lev*
 
 **Documentation**
-- Added mitm to the readme — *Ithamar Kaplan*
+- Added mitm to the readme — *Ithamar*
 
 ## 2026-01-11
 **New Features**
-- Create mitm.py — *pele1551*
+- Create mitm.py — *Pele*
 
 **Fixes & Refactoring**
 - Fixed a bug in gui.py and removed unneeded files from directory — *Sergey*
 - Got rid of the IFACE constant variable — *Sergey*
-- fix — *Ithamar Kaplan*
+- fix — *Ithamar*
 
 **Documentation (README Overhaul)**
-- Added project tree — *Ithamar Kaplan*
-- Added readme (draft) — *Ithamar Kaplan*
-- Revise README for IDS project and key features — *Ithamar Kaplan*
-- Fix formatting of Project tree section in README — *Ithamar Kaplan*
-- Remove prompts directory from README — *Ithamar Kaplan*
-- Update README to remove `__pycache__` entries — *Ithamar Kaplan*
+- Added project tree — *Ithamar*
+- Added readme (draft) — *Ithamar*
+- Revise README for IDS project and key features — *Ithamar*
+- Fix formatting of Project tree section in README — *Ithamar*
+- Remove prompts directory from README — *Ithamar*
+- Update README to remove `__pycache__` entries — *Ithamar*
 
 ## 2025-12-29
 **Manager & GUI**
@@ -42,56 +42,56 @@
 **Core Features**
 - Added threaded manager — *Sergey*
 - Made progress with the multithreaded manager — *Sergey*
-- Create IDS.py (added gui without functionality) — *LiorBr*
+- Create IDS.py (added gui without functionality) — *Lior*
 
 **Fixes**
-- Fixed main — *Ithamar Kaplan*
-- Update manager.py — *Ithamar Kaplan*
-- Fixed Lev's shit job doing portscan — *Ithamar Kaplan*
+- Fixed main — *Ithamar*
+- Update manager.py — *Ithamar*
+- Fixed Lev's shit job doing portscan — *Ithamar*
 - Fixed a typo — *Sergey*
 
 **Documentation & Naming**
-- README Draft (Expanded project description, features, usage) — *Ithamar Kaplan*
-- typo fixed (Updated project name from 'IPDS' to 'IDPS') — *Ithamar Kaplan*
-- Update section title in README.md — *Ithamar Kaplan*
-- Remove ARP spoofing example output from README — *Ithamar Kaplan*
+- README Draft (Expanded project description, features, usage) — *Ithamar*
+- typo fixed (Updated project name from 'IPDS' to 'IDPS') — *Ithamar*
+- Update section title in README.md — *Ithamar*
+- Remove ARP spoofing example output from README — *Ithamar*
 
 **Maintenance**
 - Modified .gitignore to ignore VSCode files — *Sergey*
 
 ## 2025-12-16
-- improve efficiency - sniffing one time only — *shapilev*
-- Update contributors in README.md — *Lev-Shapiro*
+- improve efficiency - sniffing one time only — *Lev*
+- Update contributors in README.md — *Lev*
 
 ## 2025-12-15
 **MITM & Network Features**
-- UPDATE MITM — *pele1551*
-- Added DNS spiffing example — *Ithamar Kaplan*
-- added arpspoof — *H3rcul3s*
-- added arpspoofcrack import to main.py — *H3rcul3s*
-- cuck / smae as last one — *H3rcul3s*
+- UPDATE MITM — *Pele*
+- Added DNS spiffing example — *Ithamar*
+- added arpspoof — *Adam*
+- added arpspoofcrack import to main.py — *Adam*
+- cuck / smae as last one — *Adam*
 
 **Refactoring**
 - Renamed MIDM to MITM because Lev is not so genius — *Sergey*
-- remove MIDM / remove the constructor — *pele1551*
+- remove MIDM / remove the constructor — *Pele*
 - Refined file structure and changed names — *Sergey*
 - Renamed base method to identify() — *Sergey*
 - Overall structure and edited README — *Sergey*
 
 **Fixes**
-- fix main.py / fix manager.py — *shapilev*
-- update according to business logic — *shapilev*
-- improve things — *shapilev*
+- fix main.py / fix manager.py — *Lev*
+- update according to business logic — *Lev*
+- improve things — *Lev*
 - Fixed an import that for some reason didn't work for me — *Sergey*
-- Update main.py — *Ithamar Kaplan*
+- Update main.py — *Ithamar*
 
 **Misc**
-- added notes because — *Ithamar Kaplan*
-- פלא ביקשה רווחים אז קיבלה (Pele asked for spaces so she got them) — *Ithamar Kaplan*
-- היו קונפליקטים כי כולם מטומטמים (There were conflicts because everyone is stupid) — *Ithamar Kaplan*
+- added notes because — *Ithamar*
+- פלא ביקשה רווחים אז קיבלה (Pele asked for spaces so she got them) — *Ithamar*
+- היו קונפליקטים כי כולם מטומטמים (There were conflicts because everyone is stupid) — *Ithamar*
 
 ## 2025-12-14
 **Initialization**
-- software design — *shapilev*
-- Create README.md — *Lev-Shapiro*
-- Initial commit — *SergYof*
+- software design — *Lev*
+- Create README.md — *Lev*
+- Initial commit — *Sergey*
