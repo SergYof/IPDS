@@ -2,6 +2,7 @@ from manager import Manager
 from cracks.portscan import PortScanCrack
 from cracks.arpspoof import ARPSpoofCrack
 from cracks.dnsspoof import DNSSpoofCrack
+from cracks.mitm import ARPMitmCrack
 from gui import start_gui
 from threading import Thread
 
@@ -10,7 +11,8 @@ def main():
     cracks = [
         PortScanCrack(),
         ARPSpoofCrack(),
-        DNSSpoofCrack()
+        DNSSpoofCrack(),
+        ARPMitmCrack()
     ]
 
     manager = Manager(cracks)
