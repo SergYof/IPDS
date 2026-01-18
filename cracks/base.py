@@ -4,8 +4,5 @@ class Crack:
         print(f"[!] {name.upper()} STARTED")
         self.name = name
 
-    def on_packet(self, pkt, flow):
-        return []
-
-    def on_flow(self, flow):
+    def on_packet(self, pkt, context):
         return []

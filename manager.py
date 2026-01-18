@@ -1,31 +1,31 @@
 from scapy.sendrecv import sniff
 from time import time
+import logging
 
-from engine.flow_manager import FlowManager
 from bus.alert_bus import ALERT_BUS
 from bus.packet_bus import PACKET_BUS
 from utils.geoip import lookup
-from context import Context  # Add this
+from context import Context
+
+# Suppress Scapy runtime warnings
+logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 
 class Manager:
     def __init__(self, cracks):
         self.cracks = cracks
-        self.flow_mgr = FlowManager()
         self.context = Context()  # Shared context
 
     def process_packet(self, pkt):
-        flow = self.flow_mgr.get_flow(pkt)
         suspicious = False
 
         for crack in self.cracks:
-            alerts = crack.on_packet(pkt, self.context if "ARP" in crack.name or "Port" in crack.name else flow)
-            # Use context for ARP/PortScan, flow for DNS
+            alerts = crack.on_packet(pkt, self.context)
+
             for alert in alerts:
                 suspicious = True
                 self._publish_alert(crack, alert)
 
         PACKET_BUS.publish(pkt, suspicious=suspicious)
-        self.flow_mgr.expire_flows()
 
     def _publish_alert(self, crack, alert):
         attack, attacker, details = alert

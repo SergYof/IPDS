@@ -19,7 +19,6 @@
   - ARP spoof/mitm detection ([cracks/arpspoof.py](cracks/arpspoof.py))
   - DNS spoof detection ([cracks/dnsspoof.py](cracks/dnsspoof.py))
 - **Modular "crack" interface** for easy extension ([cracks/base.py](cracks/base.py))
-- **Flow tracking and expiry** ([engine/flow_manager.py](engine/flow_manager.py), [engine/flow.py](engine/flow.py))
 - **In-process buses** for packets and alerts ([bus/packet_bus.py](bus/packet_bus.py), [bus/alert_bus.py](bus/alert_bus.py))
 - **GeoIP lookup** support ([utils/geoip.py](utils/geoip.py))
 - **Small, readable codebase** for learning and experimentation
@@ -92,8 +91,5 @@ To add your own detection module, subclass `Crack` from [cracks/base.py](cracks/
 	- [arpspoof.py](cracks/arpspoof.py)
 	- [dnsspoof.py](cracks/dnsspoof.py)
 	- [mitm.py](cracks/mitm.py)
-- engine/
-	- [flow_manager.py](engine/flow_manager.py)
-	- [flow.py](engine/flow.py)
 - utils/
 	- [geoip.py](utils/geoip.py)

@@ -12,7 +12,7 @@ class DNSSpoofCrack(Crack):
         self.requests = {}
         self.responders = defaultdict(set)
 
-    def on_packet(self, pkt, flow):
+    def on_packet(self, pkt, context):
         if not (pkt.haslayer(IP) and pkt.haslayer(UDP) and pkt.haslayer(DNS)):
             return []
 
@@ -25,11 +25,11 @@ class DNSSpoofCrack(Crack):
 
         self._cleanup(now)
 
-        if dns.qr == 0:  # request
+        if dns.qr == 0:
             qname = dns.qd.qname if dns.qd else None
             self.requests[(pkt[IP].src, dns.id, qname)] = now
 
-        else:  # response
+        else:
             client = pkt[IP].dst
             server = pkt[IP].src
             qname = dns.qd.qname if dns.qd else None
@@ -49,8 +49,5 @@ class DNSSpoofCrack(Crack):
         return alerts
 
     def _cleanup(self, now):
-        # Remove old requests
-        old_requests = [k for k, t in self.requests.items() if now - t > self.TTL]
-        for k in old_requests:
-            del self.requests[k]
-            self.responders.pop(k, None)  # Clean corresponding responders
+        self.requests = {k: t for k, t in self.requests.items() if now - t <= self.TTL}
+        self.responders = {k: v for k, v in self.responders.items() if k in self.requests}
